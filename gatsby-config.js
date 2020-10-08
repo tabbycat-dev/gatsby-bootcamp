@@ -24,11 +24,17 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
 
-    
     {
       resolve: `gatsby-source-instagram-all`,
       options: {
         access_token: process.env.INSTAGRAM_TOKEN,
+      },
+    },
+
+    {
+      resolve: `gatsby-source-instagram`,
+      options: {
+        username: process.env.INSTAGRAM_ACCOUNT,
       },
     },
   ],

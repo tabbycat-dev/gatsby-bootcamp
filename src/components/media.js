@@ -1,22 +1,22 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import Image from 'gatsby-image';
+import styles from './media.module.scss'
 
 const Instagram = () => {
     const data = useStaticQuery(graphql`
       query {
-        allInstagramContent(limit: 12) {
+        allInstaNode(limit: 12) {
           edges {
             node {
-              localImage {
+              caption
+              localFile {
                 childImageSharp {
                   fluid(maxHeight: 500, maxWidth: 500, quality: 50) {
                     ...GatsbyImageSharpFluid_withWebp_tracedSVG
                   }
                 }
               }
-              media_url
-              caption
             }
           }
         }
@@ -25,16 +25,15 @@ const Instagram = () => {
   
   
     return (
-      <div>
-        {data.allInstagramContent.edges.map((item, i) =>
-          item.node.localImage.childImageSharp ? (
-            <div key={i}>
-              <h2>{item.node.caption}</h2>
-              <Image fluid={item.node.localImage.childImageSharp.fluid} />
+      <div className={styles.instagram}>
+        {data.allInstaNode.edges.map((item, i) =>
+          item.node.localFile ? (
+            <div key={i} className={styles.post}>
+              <Image fluid={item.node.localFile.childImageSharp.fluid} />
             </div>
           ) : (
             <div>
-              <h2>** Video here {item.node.caption}</h2>
+              <h2>[** No image]</h2>
             </div>
           )
         )}
