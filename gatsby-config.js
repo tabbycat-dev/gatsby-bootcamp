@@ -4,7 +4,7 @@ module.exports = {
     author: "Andrew Mead",
   },
   plugins: [
-   'gatsby-plugin-react-helmet',
+    "gatsby-plugin-react-helmet",
     {
       resolve: `gatsby-source-contentful`,
       options: {
@@ -22,6 +22,14 @@ module.exports = {
       },
     },
     "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+
     
+    {
+      resolve: `gatsby-source-instagram-all`,
+      options: {
+        access_token: process.env.INSTAGRAM_TOKEN,
+      },
+    },
   ],
 }
